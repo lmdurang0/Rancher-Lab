@@ -1,0 +1,30 @@
+ratzkubmaster                    192.168.100.3
+ratzkubmaster2			192.168.100.4
+ratzkubnode1			192.168.100.5
+ratzkubnode2			192.168.100.6
+
+ratzrancher 			192.168.100.2
+
+
+
+network:
+    ethernets:
+        ens33:
+            dhcp4: false
+            addresses: [192.168.100.6/24]
+            gateway4: 192.168.100.1
+            nameservers:
+              addresses: [8.8.8.8,8.8.4.4,192.168.2.10]
+    version: 2
+    
+    
+    Install docker 
+    curl https://releases.rancher.com/install-docker/20.10.sh | sh
+    
+    Install Rancher server
+    
+    
+    $ sudo docker run --privileged -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+    
+    helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+    kubectl create namespace cattle-system
